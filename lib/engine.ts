@@ -10,7 +10,7 @@ import { Ball, BALL_R, PLAY_W, PLAY_H, POCKETS, POCKET_MOUTH } from "./table";
 export const FIXED_DT = 1 / 240; // physics substep (seconds)
 export const SUBSTEPS_PER_FRAME = 4; // 4 * 1/240 = 1/60s per rendered frame
 
-const ROLL_DECEL = 260; // rolling friction deceleration (units/s^2)
+const ROLL_DECEL = 150; // rolling friction deceleration (units/s^2); lower is more slippery
 const STOP_SPEED = 5; // below this a ball is considered stopped
 const BALL_RESTITUTION = 0.96;
 const CUSHION_RESTITUTION = 0.75;

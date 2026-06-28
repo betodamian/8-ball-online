@@ -35,8 +35,28 @@ export type DrawState = {
 const ox = RAIL;
 const oy = RAIL;
 
-export function drawTable(ctx: CanvasRenderingContext2D, s: DrawState) {
-  ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+export type DrawOpts = {
+  portrait: boolean;
+  dpr: number;
+  bufferW: number;
+  bufferH: number;
+};
+
+export function drawTable(
+  ctx: CanvasRenderingContext2D,
+  s: DrawState,
+  opts: DrawOpts
+) {
+  // Clear the full device buffer, then set up the drawing transform. In
+  // portrait we rotate the whole landscape table 90deg clockwise so the long
+  // axis runs vertically down the screen.
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, opts.bufferW, opts.bufferH);
+  ctx.scale(opts.dpr, opts.dpr);
+  if (opts.portrait) {
+    ctx.translate(CANVAS_H, 0);
+    ctx.rotate(Math.PI / 2);
+  }
 
   // Outer wooden frame.
   roundRect(ctx, 0, 0, CANVAS_W, CANVAS_H, 14);

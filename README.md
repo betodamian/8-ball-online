@@ -1,4 +1,4 @@
-# 🎱 8-Ball Pool: Private Online Lobbies
+# 8-Ball Pool: Private Online Lobbies
 
 A two-player online 8-ball pool game. Create a **private lobby**, share the
 **4-character join code**, and play with a friend in the browser. Built with
@@ -8,7 +8,7 @@ store (Upstash Redis via the Vercel Marketplace).
 There is also a **Pass & Play** mode for two people on one screen, with no
 account or backend needed.
 
-## ▶️ Live demo
+## Live demo
 
 **https://8-ball-online.vercel.app**
 

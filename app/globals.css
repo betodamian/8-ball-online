@@ -421,3 +421,162 @@ input[type="text"]:focus {
   font-size: 12px;
   padding: 8px 12px;
 }
+
+.specBanner {
+  background: linear-gradient(180deg, #2a2438, #221d30);
+  border: 1px solid #4a3d68;
+  color: #d8ccf5;
+  border-radius: 12px;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ---------- Portrait / mobile full-screen stage ---------- */
+.stage {
+  position: fixed;
+  inset: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  background: radial-gradient(120% 80% at 50% 0%, #133a27 0%, #06120c 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 50;
+}
+.stageCanvas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stage .poolCanvas {
+  border-radius: 12px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+}
+.stage .overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  z-index: 60;
+}
+
+.hudTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 10px calc(env(safe-area-inset-top, 0px) + 2px);
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: linear-gradient(180deg, rgba(4, 14, 9, 0.82), rgba(4, 14, 9, 0));
+  pointer-events: none;
+  z-index: 55;
+}
+.hudTop button,
+.hudTop .badge {
+  pointer-events: auto;
+}
+.hudRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.badge {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #0b2418;
+  color: var(--accent);
+}
+.badge.code {
+  cursor: pointer;
+}
+.badge.spec {
+  background: #2a2438;
+  border-color: #4a3d68;
+  color: #d8ccf5;
+  letter-spacing: 0.06em;
+}
+.hudTurn {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.hudPlayers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.miniPlayer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(8, 24, 16, 0.6);
+  border: 1px solid transparent;
+  color: var(--text);
+}
+.miniPlayer.right {
+  flex-direction: row-reverse;
+}
+.miniPlayer.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 14px rgba(242, 194, 0, 0.25);
+}
+.mpName {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.mpGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.hudMessage {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+}
+
+.hudShoot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 55;
+  transition: top 0.2s ease, bottom 0.2s ease;
+}
+.hudShoot.bottom {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 6px);
+  background: linear-gradient(0deg, rgba(4, 14, 9, 0.82), rgba(4, 14, 9, 0));
+}
+.hudShoot.top {
+  top: 104px;
+}
+.hudShoot .hint {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}

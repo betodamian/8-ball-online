@@ -22,6 +22,7 @@ export default function Room({ code }: { code: string }) {
   const [error, setError] = useState("");
   const [notFound, setNotFound] = useState(false);
   const [needJoin, setNeedJoin] = useState(false);
+  const [spectator, setSpectator] = useState(false);
   const [name, setName] = useState("");
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState("");
@@ -44,7 +45,12 @@ export default function Room({ code }: { code: string }) {
     fetchState(code)
       .then((s) => {
         applyIncoming(s);
-        if (!id) setNeedJoin(true);
+        if (!id) {
+          // No seat held: join if one is open, otherwise spectate.
+          const full = !!s.players[0] && !!s.players[1];
+          if (full) setSpectator(true);
+          else setNeedJoin(true);
+        }
       })
       .catch(() => setNotFound(true));
   }, [code, applyIncoming]);
@@ -192,6 +198,8 @@ export default function Room({ code }: { code: string }) {
       <PoolGame
         state={state}
         myIndex={identity?.index ?? null}
+        spectator={spectator}
+        code={code}
         onShoot={onShoot}
         onRematch={onRematch}
         busy={busy}

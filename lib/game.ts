@@ -134,35 +134,11 @@ export function applyResolvedShot(
     !prev.open && shooterGroup !== null && countRemaining(prev.balls, shooterGroup) === 0;
 
   // ---- Foul detection ----
-  let foul = false;
-  let foulReason = "";
-
-  if (events.cueScratched) {
-    foul = true;
-    foulReason = "Scratch";
-  } else if (events.firstContact === null) {
-    foul = true;
-    foulReason = "No ball hit";
-  } else if (!wasBreak) {
-    // Wrong-ball-first only matters off the break.
-    if (onEightBefore) {
-      if (events.firstContact !== 8) {
-        foul = true;
-        foulReason = "Must hit the 8 first";
-      }
-    } else if (!prev.open) {
-      if (ballGroup(events.firstContact) !== shooterGroup) {
-        foul = true;
-        foulReason = "Hit the wrong group first";
-      }
-    } else {
-      // Open table: only fouls if you smack the 8 first.
-      if (events.firstContact === 8) {
-        foul = true;
-        foulReason = "Hit the 8 first on an open table";
-      }
-    }
-  }
+  // The only foul that grants ball-in-hand is a scratch (the cue ball is
+  // pocketed). Hitting nothing or the wrong ball first is just a missed shot:
+  // the turn passes, but the opponent does NOT get to place the cue ball.
+  const foul = events.cueScratched;
+  const foulReason = "Scratch";
 
   // ---- 8-ball resolution ----
   if (eightIn) {

@@ -29,6 +29,7 @@ next-env.d.ts.bak
 
 # vercel
 .vercel
-
-.vercel
 .env*
+
+# claude code (local editor/dev config)
+.claude
